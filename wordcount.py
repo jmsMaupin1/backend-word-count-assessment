@@ -47,6 +47,37 @@ import sys
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 
+def read_file(filename):
+    file = open(filename, 'r')
+    return file.read().lower().split()
+
+# 1. For the --count flag, implement a print_words(filename) function that counts
+# how often each word appears in the text and prints:
+# word1 count1
+# word2 count2
+def print_words(filename):
+    words = read_file(filename)
+    word_set = sorted(set(words))
+    word_dict = {}
+    for word in word_set:
+        print(word + " %s" % words.count(word))
+
+# 2. For the --topcount flag, implement a print_top(filename) which is similar
+# to print_words() but which prints just the top 20 most common words sorted
+# so the most common word is first, then the next most common, and so on.
+def print_top(filename):
+    words = read_file(filename)
+    word_set = sorted(set(words))
+    word_count = []
+    for word in word_set:
+        word_count.append([word, words.count(word)])
+
+    word_count = sorted(word_count, key=lambda word: word[1], reverse=True)
+    print(word_count[:20])
+    
+    # words = sorted(words, key = lambda word: word[1])
+    
+
 ###
 
 # This basic command line argument parsing code is provided and
