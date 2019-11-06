@@ -66,7 +66,17 @@ def print_words(filename):
 # to print_words() but which prints just the top 20 most common words sorted
 # so the most common word is first, then the next most common, and so on.
 def print_top(filename):
-    pass
+    words = read_file(filename)
+    word_set = sorted(set(words))
+    word_count = []
+    for word in word_set:
+        word_count.append([word, words.count(word)])
+
+    word_count = sorted(word_count, key=lambda word: word[1], reverse=True)
+    print(word_count[:20])
+    
+    # words = sorted(words, key = lambda word: word[1])
+    
 
 ###
 
